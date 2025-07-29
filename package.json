@@ -1,0 +1,777 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "multi-translate",
+  "title": "Multi Translate",
+  "packageManager": "pnpm@10.13.1",
+  "description": "A Raycast plugin that translates text using multiple translation services.",
+  "author": "Lu-Jiejie",
+  "license": "MIT",
+  "categories": [
+    "Productivity"
+  ],
+  "platforms": [
+    "Windows",
+    "macOS"
+  ],
+  "icon": "icon.png",
+  "commands": [
+    {
+      "name": "multi-translate",
+      "title": "Multi Translate",
+      "description": "Translates text using multiple services.",
+      "mode": "view"
+    }
+  ],
+  "preferences": [
+    {
+      "name": "defaultSourceLanguageCode",
+      "title": "Default Source Language",
+      "description": "Default language code for the source language.",
+      "type": "dropdown",
+      "default": "auto",
+      "data": [
+        {
+          "title": "Auto",
+          "value": "auto"
+        },
+        {
+          "title": "Chinese (Simplified)",
+          "value": "zh"
+        },
+        {
+          "title": "Chinese (Traditional)",
+          "value": "zh_hant"
+        },
+        {
+          "title": "Cantonese",
+          "value": "yue"
+        },
+        {
+          "title": "English",
+          "value": "en"
+        },
+        {
+          "title": "Japanese",
+          "value": "ja"
+        },
+        {
+          "title": "Korean",
+          "value": "ko"
+        },
+        {
+          "title": "French",
+          "value": "fr"
+        },
+        {
+          "title": "Spanish",
+          "value": "es"
+        },
+        {
+          "title": "Russian",
+          "value": "ru"
+        },
+        {
+          "title": "German",
+          "value": "de"
+        },
+        {
+          "title": "Italian",
+          "value": "it"
+        },
+        {
+          "title": "Turkish",
+          "value": "tr"
+        },
+        {
+          "title": "Portuguese (Portugal)",
+          "value": "pt"
+        },
+        {
+          "title": "Portuguese (Brazil)",
+          "value": "pt_br"
+        },
+        {
+          "title": "Vietnamese",
+          "value": "vi"
+        },
+        {
+          "title": "Indonesian",
+          "value": "id"
+        },
+        {
+          "title": "Thai",
+          "value": "th"
+        },
+        {
+          "title": "Malay",
+          "value": "ms"
+        },
+        {
+          "title": "Arabic",
+          "value": "ar"
+        },
+        {
+          "title": "Hindi",
+          "value": "hi"
+        },
+        {
+          "title": "Mongolian (Cyrillic)",
+          "value": "mn_cy"
+        },
+        {
+          "title": "Mongolian (Traditional)",
+          "value": "mn_mo"
+        },
+        {
+          "title": "Khmer",
+          "value": "km"
+        },
+        {
+          "title": "Norwegian (Bokmål)",
+          "value": "nb_no"
+        },
+        {
+          "title": "Norwegian (Nynorsk)",
+          "value": "nn_no"
+        },
+        {
+          "title": "Persian",
+          "value": "fa"
+        },
+        {
+          "title": "Swedish",
+          "value": "sv"
+        },
+        {
+          "title": "Polish",
+          "value": "pl"
+        },
+        {
+          "title": "Dutch",
+          "value": "nl"
+        },
+        {
+          "title": "Ukrainian",
+          "value": "uk"
+        },
+        {
+          "title": "Hebrew",
+          "value": "he"
+        },
+        {
+          "title": "Bulgarian",
+          "value": "bg"
+        },
+        {
+          "title": "Czech",
+          "value": "cs"
+        },
+        {
+          "title": "Danish",
+          "value": "da"
+        },
+        {
+          "title": "Estonian",
+          "value": "et"
+        },
+        {
+          "title": "Finnish",
+          "value": "fi"
+        },
+        {
+          "title": "Greek",
+          "value": "el"
+        },
+        {
+          "title": "Hungarian",
+          "value": "hu"
+        },
+        {
+          "title": "Latvian",
+          "value": "lv"
+        },
+        {
+          "title": "Lithuanian",
+          "value": "lt"
+        },
+        {
+          "title": "Romanian",
+          "value": "ro"
+        },
+        {
+          "title": "Slovak",
+          "value": "sk"
+        },
+        {
+          "title": "Slovenian",
+          "value": "sl"
+        }
+      ],
+      "required": true
+    },
+    {
+      "name": "defaultTargetLanguageCode",
+      "title": "Default Target Language",
+      "description": "Default language code for the target language.",
+      "type": "dropdown",
+      "default": "en",
+      "data": [
+        {
+          "title": "Chinese (Simplified)",
+          "value": "zh"
+        },
+        {
+          "title": "Chinese (Traditional)",
+          "value": "zh_hant"
+        },
+        {
+          "title": "Cantonese",
+          "value": "yue"
+        },
+        {
+          "title": "English",
+          "value": "en"
+        },
+        {
+          "title": "Japanese",
+          "value": "ja"
+        },
+        {
+          "title": "Korean",
+          "value": "ko"
+        },
+        {
+          "title": "French",
+          "value": "fr"
+        },
+        {
+          "title": "Spanish",
+          "value": "es"
+        },
+        {
+          "title": "Russian",
+          "value": "ru"
+        },
+        {
+          "title": "German",
+          "value": "de"
+        },
+        {
+          "title": "Italian",
+          "value": "it"
+        },
+        {
+          "title": "Turkish",
+          "value": "tr"
+        },
+        {
+          "title": "Portuguese (Portugal)",
+          "value": "pt"
+        },
+        {
+          "title": "Portuguese (Brazil)",
+          "value": "pt_br"
+        },
+        {
+          "title": "Vietnamese",
+          "value": "vi"
+        },
+        {
+          "title": "Indonesian",
+          "value": "id"
+        },
+        {
+          "title": "Thai",
+          "value": "th"
+        },
+        {
+          "title": "Malay",
+          "value": "ms"
+        },
+        {
+          "title": "Arabic",
+          "value": "ar"
+        },
+        {
+          "title": "Hindi",
+          "value": "hi"
+        },
+        {
+          "title": "Mongolian (Cyrillic)",
+          "value": "mn_cy"
+        },
+        {
+          "title": "Mongolian (Traditional)",
+          "value": "mn_mo"
+        },
+        {
+          "title": "Khmer",
+          "value": "km"
+        },
+        {
+          "title": "Norwegian (Bokmål)",
+          "value": "nb_no"
+        },
+        {
+          "title": "Norwegian (Nynorsk)",
+          "value": "nn_no"
+        },
+        {
+          "title": "Persian",
+          "value": "fa"
+        },
+        {
+          "title": "Swedish",
+          "value": "sv"
+        },
+        {
+          "title": "Polish",
+          "value": "pl"
+        },
+        {
+          "title": "Dutch",
+          "value": "nl"
+        },
+        {
+          "title": "Ukrainian",
+          "value": "uk"
+        },
+        {
+          "title": "Hebrew",
+          "value": "he"
+        },
+        {
+          "title": "Bulgarian",
+          "value": "bg"
+        },
+        {
+          "title": "Czech",
+          "value": "cs"
+        },
+        {
+          "title": "Danish",
+          "value": "da"
+        },
+        {
+          "title": "Estonian",
+          "value": "et"
+        },
+        {
+          "title": "Finnish",
+          "value": "fi"
+        },
+        {
+          "title": "Greek",
+          "value": "el"
+        },
+        {
+          "title": "Hungarian",
+          "value": "hu"
+        },
+        {
+          "title": "Latvian",
+          "value": "lv"
+        },
+        {
+          "title": "Lithuanian",
+          "value": "lt"
+        },
+        {
+          "title": "Romanian",
+          "value": "ro"
+        },
+        {
+          "title": "Slovak",
+          "value": "sk"
+        },
+        {
+          "title": "Slovenian",
+          "value": "sl"
+        }
+      ],
+      "required": true
+    },
+    {
+      "name": "service1",
+      "title": "Service 1",
+      "description": "Select translation service 1.",
+      "type": "dropdown",
+      "data": [
+        {
+          "title": "-",
+          "value": "none"
+        },
+        {
+          "title": "Baidu",
+          "value": "baidu"
+        },
+        {
+          "title": "Microsoft",
+          "value": "bing"
+        },
+        {
+          "title": "Google",
+          "value": "google"
+        },
+        {
+          "title": "Caiyun",
+          "value": "caiyun"
+        },
+        {
+          "title": "DeepL",
+          "value": "deepl"
+        },
+        {
+          "title": "Tencent",
+          "value": "tencent"
+        },
+        {
+          "title": "Transmart",
+          "value": "transmart"
+        },
+        {
+          "title": "Youdao",
+          "value": "youdao"
+        },
+        {
+          "title": "Volcano",
+          "value": "volcengine"
+        }
+      ],
+      "default": "baidu",
+      "required": true
+    },
+    {
+      "name": "service2",
+      "title": "Service 2",
+      "description": "Select translation service 2.",
+      "type": "dropdown",
+      "data": [
+        {
+          "title": "-",
+          "value": "none"
+        },
+        {
+          "title": "Baidu",
+          "value": "baidu"
+        },
+        {
+          "title": "Microsoft",
+          "value": "bing"
+        },
+        {
+          "title": "Google",
+          "value": "google"
+        },
+        {
+          "title": "Caiyun",
+          "value": "caiyun"
+        },
+        {
+          "title": "DeepL",
+          "value": "deepl"
+        },
+        {
+          "title": "Tencent",
+          "value": "tencent"
+        },
+        {
+          "title": "Transmart",
+          "value": "transmart"
+        },
+        {
+          "title": "Youdao",
+          "value": "youdao"
+        },
+        {
+          "title": "Volcano",
+          "value": "volcengine"
+        }
+      ],
+      "default": "bing",
+      "required": true
+    },
+    {
+      "name": "service3",
+      "title": "Service 3",
+      "description": "Select translation service 3.",
+      "type": "dropdown",
+      "data": [
+        {
+          "title": "-",
+          "value": "none"
+        },
+        {
+          "title": "Baidu",
+          "value": "baidu"
+        },
+        {
+          "title": "Microsoft",
+          "value": "bing"
+        },
+        {
+          "title": "Google",
+          "value": "google"
+        },
+        {
+          "title": "Caiyun",
+          "value": "caiyun"
+        },
+        {
+          "title": "DeepL",
+          "value": "deepl"
+        },
+        {
+          "title": "Tencent",
+          "value": "tencent"
+        },
+        {
+          "title": "Transmart",
+          "value": "transmart"
+        },
+        {
+          "title": "Youdao",
+          "value": "youdao"
+        },
+        {
+          "title": "Volcano",
+          "value": "volcengine"
+        }
+      ],
+      "default": "google",
+      "required": true
+    },
+    {
+      "name": "service4",
+      "title": "Service 4",
+      "description": "Select translation service 4.",
+      "type": "dropdown",
+      "data": [
+        {
+          "title": "-",
+          "value": "none"
+        },
+        {
+          "title": "Baidu",
+          "value": "baidu"
+        },
+        {
+          "title": "Microsoft",
+          "value": "bing"
+        },
+        {
+          "title": "Google",
+          "value": "google"
+        },
+        {
+          "title": "Caiyun",
+          "value": "caiyun"
+        },
+        {
+          "title": "DeepL",
+          "value": "deepl"
+        },
+        {
+          "title": "Tencent",
+          "value": "tencent"
+        },
+        {
+          "title": "Transmart",
+          "value": "transmart"
+        },
+        {
+          "title": "Youdao",
+          "value": "youdao"
+        },
+        {
+          "title": "Volcano",
+          "value": "volcengine"
+        }
+      ],
+      "default": "caiyun",
+      "required": true
+    },
+    {
+      "name": "service5",
+      "title": "Service 5",
+      "description": "Select translation service 5.",
+      "type": "dropdown",
+      "data": [
+        {
+          "title": "-",
+          "value": "none"
+        },
+        {
+          "title": "Baidu",
+          "value": "baidu"
+        },
+        {
+          "title": "Microsoft",
+          "value": "bing"
+        },
+        {
+          "title": "Google",
+          "value": "google"
+        },
+        {
+          "title": "Caiyun",
+          "value": "caiyun"
+        },
+        {
+          "title": "DeepL",
+          "value": "deepl"
+        },
+        {
+          "title": "Tencent",
+          "value": "tencent"
+        },
+        {
+          "title": "Transmart",
+          "value": "transmart"
+        },
+        {
+          "title": "Youdao",
+          "value": "youdao"
+        },
+        {
+          "title": "Volcano",
+          "value": "volcengine"
+        }
+      ],
+      "default": "deepl",
+      "required": true
+    },
+    {
+      "name": "service6",
+      "title": "Service 6",
+      "description": "Select translation service 6.",
+      "type": "dropdown",
+      "data": [
+        {
+          "title": "-",
+          "value": "none"
+        },
+        {
+          "title": "Baidu",
+          "value": "baidu"
+        },
+        {
+          "title": "Microsoft",
+          "value": "bing"
+        },
+        {
+          "title": "Google",
+          "value": "google"
+        },
+        {
+          "title": "Caiyun",
+          "value": "caiyun"
+        },
+        {
+          "title": "DeepL",
+          "value": "deepl"
+        },
+        {
+          "title": "Tencent",
+          "value": "tencent"
+        },
+        {
+          "title": "Transmart",
+          "value": "transmart"
+        },
+        {
+          "title": "Youdao",
+          "value": "youdao"
+        },
+        {
+          "title": "Volcano",
+          "value": "volcengine"
+        }
+      ],
+      "default": "tencent",
+      "required": true
+    },
+    {
+      "name": "service7",
+      "title": "Service 7",
+      "description": "Select translation service 7.",
+      "type": "dropdown",
+      "data": [
+        {
+          "title": "-",
+          "value": "none"
+        },
+        {
+          "title": "Baidu",
+          "value": "baidu"
+        },
+        {
+          "title": "Microsoft",
+          "value": "bing"
+        },
+        {
+          "title": "Google",
+          "value": "google"
+        },
+        {
+          "title": "Caiyun",
+          "value": "caiyun"
+        },
+        {
+          "title": "DeepL",
+          "value": "deepl"
+        },
+        {
+          "title": "Tencent",
+          "value": "tencent"
+        },
+        {
+          "title": "Transmart",
+          "value": "transmart"
+        },
+        {
+          "title": "Youdao",
+          "value": "youdao"
+        },
+        {
+          "title": "Volcano",
+          "value": "volcengine"
+        }
+      ],
+      "default": "transmart",
+      "required": true
+    }
+  ],
+  "scripts": {
+    "dev": "ray develop",
+    "build": "ray build -e dist",
+    "lint": "eslint .",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "prepare": "simple-git-hooks",
+    "preferences": "esno ./scripts/preferences.ts"
+  },
+  "dependencies": {
+    "@raycast/api": "^1.100.3",
+    "@raycast/utils": "^2.2.0",
+    "axios": "^1.11.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^4.16.2",
+    "@raycast/eslint-config": "^2.0.4",
+    "@types/node": "^20.19.7",
+    "@types/react": "^19.1.8",
+    "eslint": "^9.31.0",
+    "esno": "^4.8.0",
+    "lint-staged": "^16.1.2",
+    "simple-git-hooks": "^2.13.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  }
+}
