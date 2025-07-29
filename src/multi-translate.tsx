@@ -1,6 +1,6 @@
 import type { LanguageCode } from './logic/language'
 import type { TranslateResult as RawTranslateResult, ServiceName } from './logic/service'
-import { Color, Icon, List, showToast, Toast } from '@raycast/api'
+import { Action, ActionPanel, Color, Icon, List, showToast, Toast } from '@raycast/api'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import LanguageDropdown from './components/LanguageDropdown'
 import TranslateDetail from './components/TranslateDetail'
@@ -116,6 +116,28 @@ export default function MultiTranslate() {
                         : [{ icon: { source: Icon.Dot, tintColor: Color.Green } }]
                   : [{ icon: Icon.Dot }]
               }
+              actions={(
+                <ActionPanel>
+                  <ActionPanel.Section>
+                    <Action.CopyToClipboard
+                      title="Copy Result"
+                      content={item.result}
+                      shortcut={{
+                        macOS: { modifiers: ['cmd'], key: 'c' },
+                        windows: { modifiers: ['ctrl'], key: 'c' },
+                      }}
+                    />
+                  </ActionPanel.Section>
+                  <ActionPanel.Section>
+                    <Action.OpenInBrowser
+                      title="Open GitHub"
+                      url="https://github.com/lu-jiejie/raycast-multi-translate"
+                      icon={Icon.Code}
+                    >
+                    </Action.OpenInBrowser>
+                  </ActionPanel.Section>
+                </ActionPanel>
+              )}
             />
           </List.Section>
 
