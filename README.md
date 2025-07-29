@@ -28,6 +28,31 @@ A Raycast plugin that translates text using multiple translation services.
 > [!IMPORTANT]
 > The above services are unofficial. Please use with discretion.
 
+## Installation
+
+This extension has not been published to the Raycast Store yet, so you need to install it manually by cloning the repository and running it in development mode.
+
+You should have [Node.js](https://nodejs.org/en/download/) and [pnpm](https://pnpm.io/installation) installed before installing.
+
+1. Clone this repository
+
+```bash
+git clone https://github.com/Lu-Jiejie/raycast-multi-translate
+```
+
+2. Go to the cloned directory and install dependencies
+
+```bash
+cd raycast-multi-translate
+pnpm install
+```
+
+3. Install this extension in Raycast
+
+```bash
+pnpm run dev
+```
+
 ## Language Codes List
 
 + I can only ensure the common languages are supported.
