@@ -60,13 +60,15 @@ import { serviceNamesArr, serviceTitleMap } from '../src/logic/service'
       data: languageOptions.slice(1),
       required: true,
     },
-    // {
-    //   name: 'languageCodePairs',
-    //   title: 'LanguageCodePairs',
-    //   description: 'Comma-separated list of language pairs in the format "source>target".',
-    //   type: 'textfield',
-    //   required: true,
-    // },
+    {
+      name: 'dropdownCacheDuration',
+      title: 'Dropdown Cache Duration',
+      description: 'Cache duration for the language dropdown (in seconds).',
+      type: 'textfield',
+      default: '600',
+      placeholder: '600',
+      required: false,
+    },
     ...servicePreferences,
   ]
 

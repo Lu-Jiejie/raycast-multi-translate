@@ -13,7 +13,12 @@ type TranslateResult = RawTranslateResult & {
 }
 
 export default function MultiTranslate() {
-  const { defaultSourceLanguageCode, defaultTargetLanguageCode, services } = settings
+  const {
+    defaultSourceLanguageCode,
+    defaultTargetLanguageCode,
+    services,
+    dropdownCacheDuration,
+  } = settings
   const buildInitialResults = (inputValue: string) => {
     const isEmpty = !inputValue
     return Object.fromEntries(
@@ -88,6 +93,7 @@ export default function MultiTranslate() {
           defaultLanguage={defaultTargetLanguageCode}
           tooltip="Select target language"
           onChange={setTargetCode}
+          cacheDuration={dropdownCacheDuration}
         />
       )}
     >

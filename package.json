@@ -392,6 +392,15 @@
       "required": true
     },
     {
+      "name": "dropdownCacheDuration",
+      "title": "Dropdown Cache Duration",
+      "description": "Cache duration for the language dropdown (in seconds).",
+      "type": "textfield",
+      "placeholder": "600",
+      "default": "600",
+      "required": false
+    },
+    {
       "name": "service1",
       "title": "Service 1",
       "description": "Select translation service 1.",

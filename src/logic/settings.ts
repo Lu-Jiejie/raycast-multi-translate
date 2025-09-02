@@ -6,6 +6,7 @@ export interface Settings {
   services: ServiceName[]
   defaultSourceLanguageCode: LanguageCode
   defaultTargetLanguageCode: LanguageCode
+  dropdownCacheDuration: number
 }
 
 const preference = getPreferenceValues<Preferences>()
@@ -20,10 +21,13 @@ function parseSettings(preference: Preferences): Settings {
   const sourceLanguageCode = preference.defaultSourceLanguageCode as LanguageCode
   const targetLanguageCode = preference.defaultTargetLanguageCode as LanguageCode
 
+  const dropdownCacheDuration = +preference.dropdownCacheDuration as number
+
   return {
     services,
     defaultSourceLanguageCode: sourceLanguageCode,
     defaultTargetLanguageCode: targetLanguageCode,
+    dropdownCacheDuration,
   }
 }
 
