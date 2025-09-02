@@ -4,6 +4,7 @@ import * as Baidu from './baidu'
 import * as Bing from './bing'
 import * as Caiyun from './caiyun'
 import * as DeepL from './deepl'
+import * as DeepLX from './deeplx'
 import * as Google from './google'
 import * as Tencent from './tencent'
 import * as Transmart from './transmart'
@@ -16,6 +17,7 @@ export const serviceNamesArr = [
   'google',
   'caiyun',
   'deepl',
+  'deeplx',
   'tencent',
   'transmart',
   'youdao',
@@ -40,6 +42,7 @@ export const serviceModules: Record<ServiceName, {
   google: Google,
   caiyun: Caiyun,
   deepl: DeepL,
+  deeplx: DeepLX,
   tencent: Tencent,
   transmart: Transmart,
   youdao: Youdao,
@@ -51,6 +54,7 @@ export const serviceTitleMap: Record<ServiceName, { en: string, zh: string }> = 
   bing: { en: 'Microsoft', zh: '微软翻译' },
   caiyun: { en: 'Caiyun', zh: '彩云小译' },
   deepl: { en: 'DeepL', zh: 'DeepL' },
+  deeplx: { en: 'DeepLX', zh: 'DeepLX' },
   google: { en: 'Google', zh: '谷歌翻译' },
   tencent: { en: 'Tencent', zh: '腾讯翻译君' },
   transmart: { en: 'Transmart', zh: '腾讯交互翻译' },

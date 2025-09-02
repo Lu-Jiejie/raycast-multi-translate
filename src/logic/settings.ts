@@ -7,6 +7,7 @@ export interface Settings {
   defaultSourceLanguageCode: LanguageCode
   defaultTargetLanguageCode: LanguageCode
   dropdownCacheDuration: number
+  deeplxApiUrl: string
 }
 
 const preference = getPreferenceValues<Preferences>()
@@ -23,11 +24,14 @@ function parseSettings(preference: Preferences): Settings {
 
   const dropdownCacheDuration = +preference.dropdownCacheDuration as number
 
+  const deeplxApiUrl = preference.deeplxApiUrl || ''
+
   return {
     services,
     defaultSourceLanguageCode: sourceLanguageCode,
     defaultTargetLanguageCode: targetLanguageCode,
     dropdownCacheDuration,
+    deeplxApiUrl,
   }
 }
 

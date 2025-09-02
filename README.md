@@ -15,6 +15,7 @@ A Raycast plugin that translates text using multiple translation services.
 ## Supports
 
 ### Without configuration
+
 - [Youdao](https://fanyi.youdao.com/)
 - [Google](https://translate.google.com/)
 - [Baidu](https://fanyi.baidu.com/)
@@ -27,6 +28,12 @@ A Raycast plugin that translates text using multiple translation services.
 
 > [!IMPORTANT]
 > The above services are unofficial. Please use with discretion.
+
+### Need configuration
+
+These services may require API keys or other configuration. Please refer to the documentation for each service for more information.
+
+- DeepLX
 
 ## Installation
 

@@ -69,6 +69,13 @@ import { serviceNamesArr, serviceTitleMap } from '../src/logic/service'
       placeholder: '600',
       required: false,
     },
+    {
+      name: 'deeplxApiUrl',
+      title: 'DeepLX API URL',
+      description: 'Personal DeepLX API URL.',
+      type: 'textfield',
+      required: false,
+    },
     ...servicePreferences,
   ]
 
