@@ -1,10 +1,9 @@
 import type { LanguageCode } from './logic/language'
 import type { TranslateResult as RawTranslateResult, ServiceName } from './logic/service'
 import { Action, ActionPanel, Color, Icon, List, showToast, Toast } from '@raycast/api'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import LanguageDropdown from './components/LanguageDropdown'
 import TranslateDetail from './components/TranslateDetail'
-import { useDebouncedValue } from './logic'
 import { serviceModules, serviceTitleMap } from './logic/service'
 import { settings } from './logic/settings'
 
@@ -20,7 +19,6 @@ export default function MultiTranslate() {
     dropdownCacheDuration,
   } = settings
   const buildInitialResults = (inputValue: string) => {
-    const isEmpty = !inputValue
     return Object.fromEntries(
       services.map(serviceName => [serviceName, {
         serviceName,
@@ -29,15 +27,15 @@ export default function MultiTranslate() {
         from: defaultSourceLanguageCode || 'auto',
         to: defaultTargetLanguageCode || 'en',
         error: null,
-        loading: !isEmpty,
+        loading: false,
       }]),
     ) as Record<ServiceName, TranslateResult>
   }
   const [input, setInput] = useState('')
-  const debouncedInput = useDebouncedValue(input.trim(), 1000)
   const [results, setResults] = useState<Record<ServiceName, TranslateResult>>(buildInitialResults(''))
   const isLoading = useMemo(() => Object.values(results).some(r => r.loading), [results])
   const [targetCode, setTargetCode] = useState<LanguageCode>(defaultTargetLanguageCode)
+  const [lastTranslatedInput, setLastTranslatedInput] = useState('')
 
   const updateResultAndLoading = useCallback((serviceName: ServiceName, result: TranslateResult) => {
     setResults(prev => ({
@@ -46,23 +44,34 @@ export default function MultiTranslate() {
     }))
   }, [])
 
-  useEffect(() => {
-    if (!debouncedInput) {
-      setResults(buildInitialResults(''))
+  const performTranslation = useCallback(() => {
+    if (!input.trim()) {
       return
     }
 
-    const trimmedInput = debouncedInput.trim()
-    setResults(buildInitialResults(trimmedInput))
+    const trimmedInput = input.trim()
+
+    if (trimmedInput === lastTranslatedInput && !isLoading) {
+      return
+    }
+
+    const loadingResults = Object.fromEntries(
+      services.map(serviceName => [
+        serviceName,
+        {
+          ...results[serviceName],
+          original: trimmedInput,
+          loading: true,
+          result: '',
+          error: null,
+        },
+      ]),
+    ) as Record<ServiceName, TranslateResult>
+
+    setResults(loadingResults)
 
     services.forEach((serviceName) => {
       const service = serviceModules[serviceName]
-      // const fromCode = Object.prototype.hasOwnProperty.call(service.languagesMap, defaultSourceLanguageCode)
-      //   ? service.languagesMap[defaultSourceLanguageCode]!
-      //   : defaultSourceLanguageCode
-      // const toCode = Object.prototype.hasOwnProperty.call(service.languagesMap, defaultTargetLanguageCode)
-      //   ? service.languagesMap[defaultTargetLanguageCode]!
-      //   : defaultTargetLanguageCode
       const from = defaultSourceLanguageCode
       const to = targetCode
 
@@ -78,7 +87,9 @@ export default function MultiTranslate() {
           updateResultAndLoading(serviceName, { ...result, loading: false })
         })
     })
-  }, [debouncedInput, updateResultAndLoading, targetCode])
+
+    setLastTranslatedInput(trimmedInput)
+  }, [input, services, defaultSourceLanguageCode, targetCode, updateResultAndLoading, lastTranslatedInput, isLoading, results])
 
   return (
     <List
@@ -86,7 +97,7 @@ export default function MultiTranslate() {
       isLoading={isLoading}
       isShowingDetail={true}
       throttle={true}
-      searchBarPlaceholder="Enter text to translate..."
+      searchBarPlaceholder="Enter text to translate and press Enter..."
       searchBarAccessory={(
         <LanguageDropdown
           value={targetCode}
@@ -106,25 +117,32 @@ export default function MultiTranslate() {
             key={serviceName}
           >
             <List.Item
-              title={item.result}
+              title={item.result || item.error}
               key={serviceName}
               detail={<TranslateDetail item={item} />}
               icon={`service_icon/${serviceName}.png`}
               // subtitle={serviceName}
               accessories={
-                debouncedInput !== ''
-                  ? item.error
-                    ? [{ icon: { source: Icon.Dot, tintColor: Color.Red } }]
-                    : item.result !== ''
-                      ? [{ icon: { source: Icon.Dot, tintColor: Color.Green } }]
-                      : item.loading
-                        ? [{ icon: { source: Icon.Dot, tintColor: Color.Yellow } }]
-                        : [{ icon: { source: Icon.Dot, tintColor: Color.Green } }]
-                  : [{ icon: Icon.Dot }]
+                item.error
+                  ? [{ icon: { source: Icon.Dot, tintColor: Color.Red } }]
+                  : item.result !== ''
+                    ? [{ icon: { source: Icon.Dot, tintColor: Color.Green } }]
+                    : item.loading
+                      ? [{ icon: { source: Icon.Dot, tintColor: Color.Yellow } }]
+                      : [{ icon: Icon.Dot }]
               }
               actions={(
                 <ActionPanel>
                   <ActionPanel.Section>
+                    <Action
+                      title={input.trim() === '' ? 'Enter text to translate' : 'Translate'}
+                      icon={Icon.MagnifyingGlass}
+                      onAction={performTranslation}
+                      shortcut={{
+                        macOS: { modifiers: [], key: 'return' },
+                        windows: { modifiers: [], key: 'return' },
+                      }}
+                    />
                     <Action.CopyToClipboard
                       title="Copy Result"
                       content={item.result}
