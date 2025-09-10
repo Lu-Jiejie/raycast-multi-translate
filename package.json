@@ -408,6 +408,21 @@
       "required": false
     },
     {
+      "name": "ollamaApiUrl",
+      "title": "Ollama API URL",
+      "description": "Ollama API URL.",
+      "type": "textfield",
+      "required": false,
+      "default": "http://localhost:11434"
+    },
+    {
+      "name": "ollamaModel",
+      "title": "Ollama Model",
+      "description": "Ollama model name.",
+      "type": "textfield",
+      "required": false
+    },
+    {
       "name": "service1",
       "title": "Service 1",
       "description": "Select translation service 1.",
@@ -440,6 +455,10 @@
         {
           "title": "DeepLX",
           "value": "deeplx"
+        },
+        {
+          "title": "Ollama",
+          "value": "ollama"
         },
         {
           "title": "Tencent",
@@ -496,6 +515,10 @@
           "value": "deeplx"
         },
         {
+          "title": "Ollama",
+          "value": "ollama"
+        },
+        {
           "title": "Tencent",
           "value": "tencent"
         },
@@ -548,6 +571,10 @@
         {
           "title": "DeepLX",
           "value": "deeplx"
+        },
+        {
+          "title": "Ollama",
+          "value": "ollama"
         },
         {
           "title": "Tencent",
@@ -604,6 +631,10 @@
           "value": "deeplx"
         },
         {
+          "title": "Ollama",
+          "value": "ollama"
+        },
+        {
           "title": "Tencent",
           "value": "tencent"
         },
@@ -656,6 +687,10 @@
         {
           "title": "DeepLX",
           "value": "deeplx"
+        },
+        {
+          "title": "Ollama",
+          "value": "ollama"
         },
         {
           "title": "Tencent",
@@ -712,6 +747,10 @@
           "value": "deeplx"
         },
         {
+          "title": "Ollama",
+          "value": "ollama"
+        },
+        {
           "title": "Tencent",
           "value": "tencent"
         },
@@ -766,6 +805,10 @@
           "value": "deeplx"
         },
         {
+          "title": "Ollama",
+          "value": "ollama"
+        },
+        {
           "title": "Tencent",
           "value": "tencent"
         },
@@ -782,7 +825,7 @@
           "value": "volcengine"
         }
       ],
-      "default": "tencent",
+      "default": "ollama",
       "required": true
     }
   ],
@@ -809,8 +852,7 @@
     "esno": "^4.8.0",
     "lint-staged": "^16.1.2",
     "simple-git-hooks": "^2.13.0",
-    "typescript": "^5.8.3",
-    "vitest": "^3.2.4"
+    "typescript": "^5.8.3"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

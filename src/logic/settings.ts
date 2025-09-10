@@ -8,6 +8,8 @@ export interface Settings {
   defaultTargetLanguageCode: LanguageCode
   dropdownCacheDuration: number
   deeplxApiUrl: string
+  ollamaApiUrl: string
+  ollamaModel: string
 }
 
 const preference = getPreferenceValues<Preferences>()
@@ -25,6 +27,8 @@ function parseSettings(preference: Preferences): Settings {
   const dropdownCacheDuration = +preference.dropdownCacheDuration as number
 
   const deeplxApiUrl = preference.deeplxApiUrl || ''
+  const ollamaApiUrl = preference.ollamaApiUrl || 'http://localhost:11434'
+  const ollamaModel = preference.ollamaModel || ''
 
   return {
     services,
@@ -32,6 +36,8 @@ function parseSettings(preference: Preferences): Settings {
     defaultTargetLanguageCode: targetLanguageCode,
     dropdownCacheDuration,
     deeplxApiUrl,
+    ollamaApiUrl,
+    ollamaModel,
   }
 }
 

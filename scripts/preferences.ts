@@ -33,15 +33,6 @@ import { serviceNamesArr, serviceTitleMap } from '../src/logic/service'
   })
 
   pkg.preferences = [
-    // {
-    //   name: 'services',
-    //   title: 'Translation Services',
-    //   description: 'Comma-separated list of translation services to use.',
-    //   type: 'textfield',
-    //   default: 'youdao,deepl,google,bing',
-    //   placeholder: 'Enter services',
-    //   required: true,
-    // },
     {
       name: 'defaultSourceLanguageCode',
       title: 'Default Source Language',
@@ -73,6 +64,21 @@ import { serviceNamesArr, serviceTitleMap } from '../src/logic/service'
       name: 'deeplxApiUrl',
       title: 'DeepLX API URL',
       description: 'Personal DeepLX API URL.',
+      type: 'textfield',
+      required: false,
+    },
+    {
+      name: 'ollamaApiUrl',
+      title: 'Ollama API URL',
+      description: 'Ollama API URL.',
+      type: 'textfield',
+      required: false,
+      default: 'http://localhost:11434',
+    },
+    {
+      name: 'ollamaModel',
+      title: 'Ollama Model',
+      description: 'Ollama model name.',
       type: 'textfield',
       required: false,
     },

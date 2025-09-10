@@ -34,7 +34,7 @@ export default function MultiTranslate() {
     ) as Record<ServiceName, TranslateResult>
   }
   const [input, setInput] = useState('')
-  const debouncedInput = useDebouncedValue(input.trim(), 500)
+  const debouncedInput = useDebouncedValue(input.trim(), 1000)
   const [results, setResults] = useState<Record<ServiceName, TranslateResult>>(buildInitialResults(''))
   const isLoading = useMemo(() => Object.values(results).some(r => r.loading), [results])
   const [targetCode, setTargetCode] = useState<LanguageCode>(defaultTargetLanguageCode)
