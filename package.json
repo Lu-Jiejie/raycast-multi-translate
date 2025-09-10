@@ -43,10 +43,6 @@
           "value": "zh_hant"
         },
         {
-          "title": "Cantonese",
-          "value": "yue"
-        },
-        {
           "title": "English",
           "value": "en"
         },
@@ -81,6 +77,10 @@
         {
           "title": "Turkish",
           "value": "tr"
+        },
+        {
+          "title": "Cantonese",
+          "value": "yue"
         },
         {
           "title": "Portuguese (Portugal)",
@@ -225,10 +225,6 @@
           "value": "zh_hant"
         },
         {
-          "title": "Cantonese",
-          "value": "yue"
-        },
-        {
           "title": "English",
           "value": "en"
         },
@@ -263,6 +259,10 @@
         {
           "title": "Turkish",
           "value": "tr"
+        },
+        {
+          "title": "Cantonese",
+          "value": "yue"
         },
         {
           "title": "Portuguese (Portugal)",
