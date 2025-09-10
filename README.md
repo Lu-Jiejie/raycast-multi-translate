@@ -33,7 +33,8 @@ A Raycast plugin that translates text using multiple translation services.
 
 These services may require API keys or other configuration. Please refer to the documentation for each service for more information.
 
-- DeepLX
+- DeepLX (needs API url)
+- [Ollama](https://github.com/ollama/ollama) (needs model name)
 
 ## Installation
 
